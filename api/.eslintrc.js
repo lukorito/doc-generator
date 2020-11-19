@@ -19,6 +19,18 @@ module.exports = {
 		"plugin:prettier/recommended",
 		"prettier/@typescript-eslint"
 	],
+	rules: {
+		"radix": 0,
+		"no-restricted-syntax": 0,
+		"no-await-in-loop": 0,
+		"no-console": 0,
+		"consistent-return": 0,
+		"@typescript-eslint/no-unused-vars": 0,
+		"@typescript-eslint/no-use-before-define": 0,
+		"@typescript-eslint/no-explicit-any": 0,
+		"import/prefer-default-export": 0,
+		"import/no-cycle": 0
+	},
 	settings: {
 		"import/resolver": {
 			"node": {

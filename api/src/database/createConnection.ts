@@ -1,4 +1,4 @@
-import {Connection, createConnection} from "typeorm";
+import { Connection, createConnection } from "typeorm";
 
 const createDatabaseConnection = (): Promise<Connection> =>  createConnection({
     type: 'postgres',
