@@ -1,0 +1,30 @@
+{
+  "name": "doc-generator",
+  "version": "1.0.0",
+  "description": "Generate Payment Quotation and Invoices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukorito/doc-generator.git"
+  },
+  "keywords": [],
+  "author": "Kelvin Kitika",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lukorito/doc-generator/issues"
+  },
+  "homepage": "https://github.com/lukorito/doc-generator#readme",
+  "_moduleDirectories": [
+    "src"
+  ],
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
