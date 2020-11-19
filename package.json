@@ -27,5 +27,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "husky": "^4.3.0"
   }
 }
