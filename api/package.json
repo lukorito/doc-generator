@@ -32,5 +32,12 @@
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.29"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

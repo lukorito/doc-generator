@@ -21,13 +21,6 @@
   "_moduleDirectories": [
     "src"
   ],
-  "lint-staged": {
-    "*.ts": [
-      "eslint --fix",
-      "prettier --write",
-      "git add"
-    ]
-  },
   "devDependencies": {
     "husky": "^4.3.0"
   }
