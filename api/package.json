@@ -33,6 +33,9 @@
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.29"
   },
+  "_moduleDirectories": [
+    "src"
+  ],
   "lint-staged": {
     "*.ts": [
       "eslint --fix",

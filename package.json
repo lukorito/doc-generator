@@ -18,10 +18,12 @@
     "url": "https://github.com/lukorito/doc-generator/issues"
   },
   "homepage": "https://github.com/lukorito/doc-generator#readme",
-  "_moduleDirectories": [
-    "src"
-  ],
   "devDependencies": {
     "husky": "^4.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   }
 }
