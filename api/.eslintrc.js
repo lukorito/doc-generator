@@ -29,7 +29,8 @@ module.exports = {
 		"@typescript-eslint/no-use-before-define": 0,
 		"@typescript-eslint/no-explicit-any": 0,
 		"import/prefer-default-export": 0,
-		"import/no-cycle": 0
+		"import/no-cycle": 0,
+		"@typescript-eslint/no-floating-promises" : 0
 	},
 	settings: {
 		"import/resolver": {

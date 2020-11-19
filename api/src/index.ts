@@ -1,12 +1,40 @@
+import 'module-alias/register';
+import 'dotenv/config';
+import 'reflect-metadata';
 import express from 'express';
+import cors from 'cors';
 
-const app = express();
-const port = process.env.PORT || 3001
+import createDatabaseConnection from 'database/createConnection';
 
-app.get('/', (req, res) => {
-    res.send('Welcome')
-})
+const establishDatabaseConnection = async (): Promise<void> => {
+  try {
+    await createDatabaseConnection();
+    console.log('Database Connected');
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-app.listen(port, () => {
-    console.log(`Servertouch instance is running on ${port}`)
-})
+const instantiateExpress = (): void => {
+  const app = express();
+  const port = process.env.PORT || 3001;
+
+  app.use(cors());
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.get('/', (req, res) => {
+    res.send('GET request to homepage');
+  });
+
+  app.listen(port, () => {
+    console.log(`Server instance is running on ${port}`);
+  });
+};
+
+const initializeApp = async (): Promise<void> => {
+  await establishDatabaseConnection();
+  instantiateExpress();
+};
+
+initializeApp();

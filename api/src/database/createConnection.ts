@@ -11,4 +11,4 @@ const createDatabaseConnection = (): Promise<Connection> =>
     synchronize: true,
   });
 
-export default createConnection();
+export default createDatabaseConnection;
