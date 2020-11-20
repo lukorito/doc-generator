@@ -30,12 +30,22 @@ module.exports = {
 		"@typescript-eslint/no-explicit-any": 0,
 		"import/prefer-default-export": 0,
 		"import/no-cycle": 0,
-		"@typescript-eslint/no-floating-promises" : 0
+		"@typescript-eslint/no-floating-promises" : 0,
+		"import/extensions": [
+			"error",
+			"always",
+			{
+				ts: "never",
+				tsx: "never",
+				js: "never",
+				jsx: "never"
+			}
+		]
 	},
 	settings: {
 		"import/resolver": {
 			"node": {
-				"moduleDirectory": ["node_modules", "src/"]
+				"moduleDirectory": ["node_modules", "src/"],
 			}
 		}
 	}
