@@ -21,6 +21,15 @@ class Quotation extends BaseEntity {
   @Column('varchar')
   title: string;
 
+  @Column()
+  subtotal: number;
+
+  @Column()
+  taxIncluded: boolean;
+
+  @Column()
+  total: number;
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
