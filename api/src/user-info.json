@@ -1,0 +1,24 @@
+{
+  "companies": [{
+    "name": "Premium Containers Limited",
+    "accountNumber": "1005962729",
+    "bank" : "NCBA BANK",
+    "branch": "Embakasi",
+    "bankCode": "07000",
+    "swiftCode": "CBAFKENX",
+    "branchCode": "021"
+  },{
+    "name": "Mauru Containers Limited",
+    "accountNumber": "1004110427",
+    "bank" : "NCBA BANK",
+    "branch": "Lunga Lunga Square",
+    "bankCode": "07000",
+    "swiftCode": "CBAFKENX",
+    "branchCode": "021"
+  }],
+  "users": [{
+    "name": "Kelvin Kitika",
+    "phoneNuumber": "254 719 888888",
+    "email": "kelvinkitika+test@gmail.com"
+  }]
+}

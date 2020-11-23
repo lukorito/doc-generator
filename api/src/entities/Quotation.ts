@@ -12,7 +12,7 @@ import { User, Company, Item } from '.';
 
 @Entity()
 class Quotation extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column('varchar')

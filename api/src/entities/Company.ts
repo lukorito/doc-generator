@@ -8,17 +8,23 @@ import {
   OneToMany,
 } from 'typeorm';
 
+import { IsInt, Length } from 'class-validator';
 import { Quotation } from '.';
 
 @Entity()
 class Company extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @Column('varchar')
+  @Column({
+    unique: true,
+    //  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+    //  handling uniqueness
+  })
   name: string;
 
   @Column('int')
+  @IsInt()
   accountNumber: number;
 
   @Column('varchar')
@@ -27,8 +33,19 @@ class Company extends BaseEntity {
   @Column('varchar')
   branch: string;
 
-  @Column('varchar')
+  @Column({
+    nullable: true,
+  })
   address: string;
+
+  @Column('varchar')
+  bankCode: string;
+
+  @Column('varchar')
+  swiftCode: string;
+
+  @Column('varchar')
+  branchCode: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
