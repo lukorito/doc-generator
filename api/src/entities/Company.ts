@@ -1,26 +1,22 @@
 import {
   Entity,
   BaseEntity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  PrimaryColumn,
 } from 'typeorm';
 
-import { IsInt, Length } from 'class-validator';
+import { IsInt } from 'class-validator';
 import { Quotation } from '.';
 
 @Entity()
 class Company extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: number;
+  @Column({ type: 'varchar', nullable: false })
+  id: string;
 
-  @Column({
-    unique: true,
-    //  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-    //  handling uniqueness
-  })
+  @PrimaryColumn()
   name: string;
 
   @Column('int')

@@ -16,9 +16,9 @@
     "swiftCode": "CBAFKENX",
     "branchCode": "021"
   }],
-  "users": [{
+  "employees": [{
     "name": "Kelvin Kitika",
-    "phoneNuumber": "254 719 888888",
+    "phoneNumber": "254 719 888888",
     "email": "kelvinkitika+test@gmail.com"
   }]
 }

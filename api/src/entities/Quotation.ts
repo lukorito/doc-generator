@@ -8,7 +8,7 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { User, Company, Item } from '.';
+import { Employee, Company, Item } from '.';
 
 @Entity()
 class Quotation extends BaseEntity {
@@ -36,8 +36,8 @@ class Quotation extends BaseEntity {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @ManyToOne(() => User, (user) => user.quotations)
-  createdBy: User;
+  @ManyToOne(() => Employee, (employee) => employee.quotations)
+  createdBy: Employee;
 
   @ManyToOne(() => Company, (company) => company.quotations)
   company: Company;

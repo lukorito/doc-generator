@@ -5,7 +5,8 @@ import express from 'express';
 import cors from 'cors';
 
 import createDatabaseConnection from 'database/createConnection';
-import seedCompanies from './database/createCompanyAccounts';
+import seedCompanies from 'database/createCompanyAccounts';
+import seedEmployees from 'database/createEmployeesAccounts';
 
 const establishDatabaseConnection = async (): Promise<void> => {
   try {
@@ -37,6 +38,7 @@ const initializeApp = async (): Promise<void> => {
   try {
     await establishDatabaseConnection();
     await seedCompanies();
+    await seedEmployees();
     instantiateExpress();
   } catch (e) {
     console.warn(e, 'error');

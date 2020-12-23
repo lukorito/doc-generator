@@ -1,15 +1,16 @@
-import { Company, User } from 'entities';
+import { Company, Employee } from 'entities';
 import { validate } from 'class-validator';
 import { getManager } from 'typeorm';
 
-type EntityConstructor = typeof Company | typeof User;
-type EntityInstance = Company | User;
+type EntityConstructor = typeof Company | typeof Employee;
+type EntityInstance = Company | Employee;
 
 export const handleValidation = async <T extends EntityInstance>(instance: T): Promise<T> => {
   const errors = await validate(instance);
   if (errors.length > 0) {
-    console.log(errors);
-    throw new Error('failed validation');
+    errors.forEach((error) => {
+      console.log(error, 'e');
+    });
   }
   return getManager().save(instance);
 };

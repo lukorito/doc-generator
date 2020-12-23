@@ -1,22 +1,22 @@
 import {
   Entity,
   BaseEntity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
+  PrimaryColumn,
 } from 'typeorm';
-import { IsDate, IsEmail, Length } from 'class-validator';
+import { IsEmail, Length } from 'class-validator';
 
 import { Quotation } from '.';
 
 @Entity()
-class User extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: number;
+class Employee extends BaseEntity {
+  @Column({ type: 'varchar', nullable: false })
+  id: string;
 
-  @Column('varchar')
+  @PrimaryColumn()
   @Length(5, 30)
   name: string;
 
@@ -28,15 +28,13 @@ class User extends BaseEntity {
   email: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  @IsDate()
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
-  @IsDate()
   updatedAt: Date;
 
   @OneToMany(() => Quotation, (quotation) => quotation.createdBy)
   quotations: Quotation[];
 }
 
-export default User;
+export default Employee;

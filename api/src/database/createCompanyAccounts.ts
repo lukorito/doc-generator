@@ -1,4 +1,5 @@
 import { Company } from 'entities';
+import { v4 as uuidv4 } from 'uuid';
 import userInfo from '../user-info.json';
 import { createEntity } from '../utils/typeorm';
 
@@ -16,6 +17,7 @@ const seedCompanies = (): Promise<Company[]> => {
   return Promise.all(
     userInfo.companies.map((companyData: ICompany) => {
       return createEntity(Company, {
+        id: uuidv4(),
         ...companyData,
         accountNumber: Number(companyData.accountNumber),
       });
