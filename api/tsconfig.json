@@ -22,7 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "outDir": "./build",
     "moduleResolution": "Node",
-    "baseUrl": "src",
+    "baseUrl": "./src",
     "paths": {
       "*": ["./*"]
     },
