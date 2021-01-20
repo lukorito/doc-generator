@@ -7,3 +7,5 @@ const theme = {
         body: 'Roboto, san-serif'
     }
 }
+
+export default { theme }
