@@ -1,27 +1,25 @@
-import Auth from "../pages/Auth";
+import Auth from '../pages/Auth';
 
 interface PublicRouteObject {
-    exact: boolean
-    path: string
-    component: any
-    title: string
+  exact: boolean;
+  path: string;
+  component: any;
+  title: string;
 }
 
 interface PrivateRouteObject extends PublicRouteObject {
-    breadcrumb: string
+  breadcrumb: string;
 }
 
 const PUBLIC_ROUTES: PublicRouteObject[] = [
-    {
-        exact: true,
-        title: 'Login',
-        path: '/',
-        component: Auth
-    },
-]
+  {
+    exact: true,
+    title: 'Login',
+    path: '/',
+    component: Auth,
+  },
+];
 
-const PRIVATE_ROUTES: PrivateRouteObject[] = [
+const PRIVATE_ROUTES: PrivateRouteObject[] = [];
 
-]
-
-export default { PRIVATE_ROUTES, PUBLIC_ROUTES }
+export default { PRIVATE_ROUTES, PUBLIC_ROUTES };
