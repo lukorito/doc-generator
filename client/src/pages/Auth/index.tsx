@@ -6,7 +6,7 @@ import { Text, H3 } from '../../components/Typography';
 import { GoogleLoginButton } from '../../components/GoogleLoginButton';
 
 const Auth = () => {
-  const clientId = '562121853833-ban8f27oiajtke2dkrpkrpjkejlo80i.apps.googleusercontent.com';
+  const clientId = process.env.GOOGLE_AUTH_CLIENT_ID as string;
   return (
     <Wrapper title='Sign in with google' alignItems='center'>
       <Box mt={[10, 20]} align='center' boxShadow='2xl' bg='white' width={['xs', 'sm']} borderRadius='lg' pb={12}>
