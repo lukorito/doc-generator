@@ -22,4 +22,6 @@ const PUBLIC_ROUTES: PublicRouteObject[] = [
 
 const PRIVATE_ROUTES: PrivateRouteObject[] = [];
 
-export default { PRIVATE_ROUTES, PUBLIC_ROUTES };
+const routes = { PRIVATE_ROUTES, PUBLIC_ROUTES }
+
+export default routes;

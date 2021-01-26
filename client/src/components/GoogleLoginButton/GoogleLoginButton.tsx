@@ -7,6 +7,7 @@ import { Text } from '../Typography';
 type GoogleLoginButtonProps = {
   clientId: string
 }
+
 const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ clientId }) => {
   return (
     <>
