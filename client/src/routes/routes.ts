@@ -18,6 +18,12 @@ const PUBLIC_ROUTES: PublicRouteObject[] = [
     path: '/',
     component: Auth,
   },
+  {
+    exact: true,
+    title: 'Login',
+    path: '/authenticate',
+    component: Auth,
+  },
 ];
 
 const PRIVATE_ROUTES: PrivateRouteObject[] = [];
