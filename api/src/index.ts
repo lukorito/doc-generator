@@ -26,6 +26,7 @@ const instantiateExpress = (): void => {
   app.use(express.urlencoded({ extended: true }));
 
   app.get('/', (req, res) => {
+    console.log(req);
     res.send('GET request to homepage');
   });
 

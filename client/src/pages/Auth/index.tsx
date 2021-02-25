@@ -8,14 +8,24 @@ import { GoogleLoginButton } from '../../components/GoogleLoginButton';
 const Auth = () => {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string;
   return (
-    <Wrapper title='Sign in with google' alignItems='center'>
-      <Box mt={[10, 20]} align='center' boxShadow='2xl' bg='white' width={['xs', 'sm']} borderRadius='lg' pb={12}>
-        <Box w='100%' p={10}>
-          <Image src={PDFImage} alt='PDF' boxSize='100px' objectFit='cover' />
+    <Wrapper title="Sign in with google" alignItems="center">
+      <Box
+        mt={[10, 20]}
+        align="center"
+        boxShadow="2xl"
+        bg="white"
+        width={['xs', 'sm']}
+        borderRadius="lg"
+        pb={12}
+      >
+        <Box w="100%" p={10}>
+          <Image src={PDFImage} alt="PDF" boxSize="100px" objectFit="cover" />
         </Box>
         <Box px={10}>
-          <H3 mb={4} color='gray.600'>Document Generator</H3>
-          <Text>Sign up with your Google account to Edit and Preview Quotations online</Text>
+          <H3 mb={4} color="gray.600">
+            Document Generator
+          </H3>
+          <Text>Sign in with your Google account to Edit and Preview Quotations online</Text>
         </Box>
         <Box mt={8}>
           <GoogleLoginButton clientId={clientId} />

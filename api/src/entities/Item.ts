@@ -5,7 +5,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  // OneToMany,
   ManyToOne,
 } from 'typeorm';
 import { Quotation } from '.';
