@@ -5,35 +5,24 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
 } from 'typeorm';
-import { Quotation } from '.';
 
 @Entity()
-class Item extends BaseEntity {
+class User extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @Column('varchar')
-  description: string;
+  @Column()
+  userName: string;
 
   @Column()
-  quantity: number;
-
-  @Column()
-  unitPrice: number;
-
-  @Column()
-  total: number;
+  email: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
-
-  @ManyToOne(() => Quotation, (quotation) => quotation.items)
-  quotation: Quotation;
 }
 
-export default Item;
+export default User;

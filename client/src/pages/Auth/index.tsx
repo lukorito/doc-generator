@@ -7,6 +7,7 @@ import { GoogleLoginButton } from '../../components/GoogleLoginButton';
 
 const Auth = () => {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string;
+  console.log(clientId);
   return (
     <Wrapper title="Sign in with google" alignItems="center">
       <Box
@@ -25,7 +26,7 @@ const Auth = () => {
           <H3 mb={4} color="gray.600">
             Document Generator
           </H3>
-          <Text>Sign in with your Google account to Edit and Preview Quotations online</Text>
+          <Text>Login in with your Google account to Edit and Preview Quotations online</Text>
         </Box>
         <Box mt={8}>
           <GoogleLoginButton clientId={clientId} />
