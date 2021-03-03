@@ -5,11 +5,14 @@ import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import App from './App';
 import theme from './theme';
 import reportWebVitals from './reportWebVitals';
+import AuthProvider from './context/AuthProvider';
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
-    <CSSReset />
-    <App />
+    <AuthProvider>
+      <CSSReset />
+      <App />
+    </AuthProvider>
   </ChakraProvider>,
   document.getElementById('root'),
 );

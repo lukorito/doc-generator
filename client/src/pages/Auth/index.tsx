@@ -4,10 +4,13 @@ import { Wrapper } from '../../components/Wrapper';
 import { pdf as PDFImage } from '../../assets/images';
 import { Text, H3 } from '../../components/Typography';
 import { GoogleLoginButton } from '../../components/GoogleLoginButton';
+import { useAuthContext } from '../../context/AuthProvider';
 
 const Auth = () => {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string;
-  console.log(clientId);
+
+  const { handleLoginSuccess, handleLoginFailure } = useAuthContext();
+
   return (
     <Wrapper title="Sign in with google" alignItems="center">
       <Box
@@ -29,7 +32,11 @@ const Auth = () => {
           <Text>Login in with your Google account to Edit and Preview Quotations online</Text>
         </Box>
         <Box mt={8}>
-          <GoogleLoginButton clientId={clientId} />
+          <GoogleLoginButton
+            clientId={clientId}
+            onSuccess={handleLoginSuccess}
+            onFailure={handleLoginFailure}
+          />
         </Box>
       </Box>
     </Wrapper>

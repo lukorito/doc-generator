@@ -1,15 +1,20 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { FcGoogle } from 'react-icons/fc';
-import { Button, useToast } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { Text } from '../Typography';
 
 type GoogleLoginButtonProps = {
   clientId: string;
+  onSuccess?: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
+  onFailure?: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
 };
 
-const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ clientId }) => {
-  const toast = useToast();
+const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
+  clientId,
+  onSuccess,
+  onFailure,
+}) => {
   return (
     <>
       <GoogleLogin
@@ -28,16 +33,16 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({ clientId }) => {
             </Text>
           </Button>
         )}
-        onSuccess={(response) => console.log(response, 'success')}
-        onFailure={() =>
-          toast({
-            title: 'An error occurred.',
-            description: 'Unable to login',
-            status: 'error',
-            duration: 3000,
-            isClosable: true,
-          })
-        }
+        onSuccess={(response) => {
+          if (onSuccess) {
+            onSuccess(response);
+          }
+        }}
+        onFailure={(response) => {
+          if (onFailure) {
+            onFailure(response);
+          }
+        }}
         cookiePolicy={'single_host_origin'}
       />
     </>
