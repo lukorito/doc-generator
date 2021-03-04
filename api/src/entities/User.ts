@@ -13,7 +13,10 @@ class User extends BaseEntity {
   id: number;
 
   @Column()
-  userName: string;
+  name: string;
+
+  @Column()
+  picture: string;
 
   @Column()
   email: string;

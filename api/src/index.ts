@@ -8,6 +8,9 @@ import createDatabaseConnection from 'database/createConnection';
 import seedCompanies from 'database/createCompanyAccounts';
 import seedEmployees from 'database/createEmployeesAccounts';
 
+import { addRespondToResponse } from 'middleware/response';
+import { attachPublicRoutes } from './routes';
+
 const establishDatabaseConnection = async (): Promise<void> => {
   try {
     await createDatabaseConnection();
@@ -24,6 +27,10 @@ const instantiateExpress = (): void => {
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  app.use(addRespondToResponse);
+
+  attachPublicRoutes(app);
 
   app.get('/', (req, res) => {
     console.log(req);

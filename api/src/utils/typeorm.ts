@@ -1,9 +1,9 @@
-import { Company, Employee } from 'entities';
+import { Company, Employee, User } from 'entities';
 import { validate } from 'class-validator';
 import { getManager } from 'typeorm';
 
-type EntityConstructor = typeof Company | typeof Employee;
-type EntityInstance = Company | Employee;
+type EntityConstructor = typeof Company | typeof Employee | typeof User;
+type EntityInstance = Company | Employee | User;
 
 export const handleValidation = async <T extends EntityInstance>(instance: T): Promise<T> => {
   const errors = await validate(instance);
