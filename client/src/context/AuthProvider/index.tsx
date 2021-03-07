@@ -15,15 +15,25 @@ const AuthProvider: React.FC = ({ children }) => {
   const toast = useToast();
 
   const handleLoginSuccess = async (response: any) => {
-    await instance.post('/auth/verify-token', {
-      token: response.tokenId,
-    });
-    await sessionStorage.setItem('token', response.tokenId);
-    instance.defaults.headers.common['Authorization'] = response.tokenId;
+    try {
+      await instance.post('/auth/verify-token', {
+        token: response.tokenId,
+      });
+      await localStorage.setItem('authToken', response.tokenId);
+    } catch (error) {
+      toast({
+        title: 'An error occurred.',
+        description: 'Unable to login',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
-  const handleLoginFailure = (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+  const handleLoginFailure = async (response: GoogleLoginResponse | GoogleLoginResponseOffline) => {
     console.log(response, 'e');
+    await localStorage.removeItem('authToken');
     toast({
       title: 'An error occurred.',
       description: 'Unable to login',

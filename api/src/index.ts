@@ -9,6 +9,7 @@ import seedCompanies from 'database/createCompanyAccounts';
 import seedEmployees from 'database/createEmployeesAccounts';
 
 import { addRespondToResponse } from 'middleware/response';
+import { verifyToken } from './middleware/authentication';
 import { attachPublicRoutes } from './routes';
 
 const establishDatabaseConnection = async (): Promise<void> => {
@@ -27,6 +28,8 @@ const instantiateExpress = (): void => {
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  app.use(verifyToken);
 
   app.use(addRespondToResponse);
 
