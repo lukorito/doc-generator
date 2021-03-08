@@ -29,11 +29,11 @@ const instantiateExpress = (): void => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  app.use(verifyToken);
-
   app.use(addRespondToResponse);
 
   attachPublicRoutes(app);
+
+  app.use(verifyToken);
 
   app.get('/', (req, res) => {
     console.log(req);

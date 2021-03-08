@@ -1,18 +1,13 @@
 import { asyncErrorHandler } from 'errors/asyncErrorHandler';
-import { OAuth2Client } from 'google-auth-library';
 import { User } from 'entities';
-import { createEntity } from '../utils/typeorm';
+import { validateToken } from 'utils/googleAuth';
+import { createEntity } from 'utils/typeorm';
 
 export const verify = asyncErrorHandler(async (req, res) => {
-  const clientId = process.env.GOOGLE_CLIENT_ID || '';
-  const client = new OAuth2Client(clientId);
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { token } = req.body;
   if (token) {
-    const ticket = await client.verifyIdToken({
-      idToken: token as string,
-      audience: clientId,
-    });
+    const ticket = await validateToken(token);
     // @ts-expect-error: email does not exists
     const { name, picture, email } = ticket.getPayload();
     if (email) {
