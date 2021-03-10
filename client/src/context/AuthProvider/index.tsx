@@ -1,17 +1,20 @@
 import { useToast } from '@chakra-ui/react';
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { instance } from '../../utils';
 
 type AuthProviderProps = {
   handleLoginSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
   handleLoginFailure: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
+  setIsAuthenticated: (status: boolean) => void;
+  isAuthenticated: boolean;
 };
 const AuthContext = createContext<Partial<AuthProviderProps>>({});
 
 export const useAuthContext = () => useContext(AuthContext);
 
 const AuthProvider: React.FC = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const toast = useToast();
 
   const handleLoginSuccess = async (response: any) => {
@@ -19,9 +22,11 @@ const AuthProvider: React.FC = ({ children }) => {
       await instance.post('/auth/verify-token', {
         token: response.tokenId,
       });
+      setIsAuthenticated(true);
       localStorage.setItem('authToken', response.tokenId);
     } catch (error) {
       localStorage.removeItem('authToken');
+      setIsAuthenticated(false);
       toast({
         title: 'An error occurred.',
         description: 'Unable to login',
@@ -41,9 +46,12 @@ const AuthProvider: React.FC = ({ children }) => {
       duration: 3000,
       isClosable: true,
     });
+    setIsAuthenticated(false);
   };
   return (
-    <AuthContext.Provider value={{ handleLoginSuccess, handleLoginFailure }}>
+    <AuthContext.Provider
+      value={{ handleLoginSuccess, handleLoginFailure, setIsAuthenticated, isAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );

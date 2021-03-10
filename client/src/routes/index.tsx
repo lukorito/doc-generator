@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, RouteProps } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, RouteProps } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthProvider';
 import routes from './routes';
 
 interface RouteType extends RouteProps {
@@ -15,10 +16,18 @@ const PublicRoute = ({ component: Component, ...rest }: RouteType) => {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }: RouteType) => {
+  const { isAuthenticated } = useAuthContext();
   return (
-    <Route>
-      <Component {...rest} />
-    </Route>
+    <Route
+      {...rest}
+      render={(props) =>
+        isAuthenticated ? (
+          <Component {...rest} />
+        ) : (
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+        )
+      }
+    />
   );
 };
 

@@ -10,7 +10,7 @@ import seedEmployees from 'database/createEmployeesAccounts';
 
 import { addRespondToResponse } from 'middleware/response';
 import { verifyToken } from './middleware/authentication';
-import { attachPublicRoutes } from './routes';
+import { attachPrivateRoutes, attachPublicRoutes } from './routes';
 
 const establishDatabaseConnection = async (): Promise<void> => {
   try {
@@ -34,6 +34,8 @@ const instantiateExpress = (): void => {
   attachPublicRoutes(app);
 
   app.use(verifyToken);
+
+  attachPrivateRoutes(app);
 
   app.get('/', (req, res) => {
     console.log(req);
