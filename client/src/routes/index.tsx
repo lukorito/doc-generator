@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Redirect, Route, RouteProps } from 'react-router-dom';
+import Loader from '../components/Loader';
 import { useAuthContext } from '../context/AuthProvider';
 import routes from './routes';
 
@@ -9,7 +10,7 @@ interface RouteType extends RouteProps {
 
 const PublicRoute = ({ component: Component, ...rest }: RouteType) => {
   return (
-    <Route>
+    <Route {...rest}>
       <Component {...rest} />
     </Route>
   );
@@ -22,7 +23,9 @@ const PrivateRoute = ({ component: Component, ...rest }: RouteType) => {
       {...rest}
       render={(props) =>
         isAuthenticated ? (
-          <Component {...rest} />
+          <Suspense fallback={<Loader />}>
+            <Component {...rest} />
+          </Suspense>
         ) : (
           <Redirect to={{ pathname: '/', state: { from: props.location } }} />
         )

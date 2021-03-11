@@ -5,11 +5,23 @@ import { pdf as PDFImage } from '../../assets/images';
 import { Text, H3 } from '../../components/Typography';
 import { GoogleLoginButton } from '../../components/GoogleLoginButton';
 import { useAuthContext } from '../../context/AuthProvider';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Auth = () => {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string;
+  const { handleLoginSuccess, handleLoginFailure, isAuthenticated } = useAuthContext();
+  const history = useHistory();
+  const location = useLocation<{ from: string }>();
 
-  const { handleLoginSuccess, handleLoginFailure } = useAuthContext();
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      let to = { pathname: '/auth/' };
+      if (location.state?.from) {
+        to = { pathname: location.state.from };
+      }
+      history.push(to);
+    }
+  }, [isAuthenticated, history, location]);
 
   return (
     <Wrapper title="Sign in with google" alignItems="center">
