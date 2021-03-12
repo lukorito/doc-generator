@@ -6,12 +6,15 @@ import App from './App';
 import theme from './theme';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './context/AuthProvider';
+import LoaderProvider from './context/LoaderProvider';
 
 ReactDOM.render(
   <ChakraProvider theme={theme}>
     <AuthProvider>
-      <CSSReset />
-      <App />
+      <LoaderProvider>
+        <CSSReset />
+        <App />
+      </LoaderProvider>
     </AuthProvider>
   </ChakraProvider>,
   document.getElementById('root'),

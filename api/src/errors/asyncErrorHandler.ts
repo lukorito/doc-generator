@@ -6,6 +6,7 @@ export const asyncErrorHandler = (requestHandler: RequestHandler): RequestHandle
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return await requestHandler(req, res, next);
     } catch (error) {
+      console.log(error, 'error');
       next(error);
     }
   };

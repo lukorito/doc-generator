@@ -6,18 +6,53 @@ import { Text, H3 } from '../../components/Typography';
 import { GoogleLoginButton } from '../../components/GoogleLoginButton';
 import { useAuthContext } from '../../context/AuthProvider';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useLoaderContext } from '../../context/LoaderProvider';
+import verifyToken from '../../utils/verifyToken';
 
 const Auth = () => {
   const clientId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID as string;
-  const { handleLoginSuccess, handleLoginFailure, isAuthenticated } = useAuthContext();
+  const {
+    handleLoginSuccess,
+    handleLoginFailure,
+    isAuthenticated,
+    setIsAuthenticated,
+  } = useAuthContext();
+  const { showLoader, hideLoader } = useLoaderContext();
   const history = useHistory();
-  const location = useLocation<{ from: string }>();
+  const location = useLocation<{ from: { pathname: string } }>();
+
+  React.useEffect(() => {
+    const storedToken = localStorage.getItem('authToken');
+    if (storedToken) {
+      if (showLoader) {
+        showLoader();
+      }
+      verifyToken(storedToken)
+        .then(() => {
+          if (hideLoader) {
+            hideLoader();
+          }
+          if (setIsAuthenticated) {
+            setIsAuthenticated(true);
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem('authToken');
+          if (hideLoader) {
+            hideLoader();
+          }
+          if (setIsAuthenticated) {
+            setIsAuthenticated(false);
+          }
+        });
+    }
+  }, [showLoader, hideLoader, history, setIsAuthenticated]);
 
   React.useEffect(() => {
     if (isAuthenticated) {
       let to = { pathname: '/auth/' };
       if (location.state?.from) {
-        to = { pathname: location.state.from };
+        to = location.state?.from;
       }
       history.push(to);
     }

@@ -17,7 +17,7 @@ const PUBLIC_ROUTES: PublicRouteObject[] = [
     exact: true,
     title: 'Login',
     path: '/',
-    component: Home,
+    component: Auth,
   },
 ];
 

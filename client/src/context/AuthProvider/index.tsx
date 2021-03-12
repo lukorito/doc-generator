@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react';
 import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import React, { createContext, useContext, useState } from 'react';
-import { instance } from '../../utils';
+import verifyToken from '../../utils/verifyToken';
 
 type AuthProviderProps = {
   handleLoginSuccess: (response: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
@@ -19,13 +19,11 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const handleLoginSuccess = async (response: any) => {
     try {
-      await instance.post('/auth/verify-token', {
-        token: response.tokenId,
-      });
+      await verifyToken(response.tokenId);
       setIsAuthenticated(true);
       localStorage.setItem('authToken', response.tokenId);
     } catch (error) {
-      localStorage.removeItem('authToken');
+      console.log(error);
       setIsAuthenticated(false);
       toast({
         title: 'An error occurred.',
@@ -50,7 +48,12 @@ const AuthProvider: React.FC = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ handleLoginSuccess, handleLoginFailure, setIsAuthenticated, isAuthenticated }}
+      value={{
+        handleLoginSuccess,
+        handleLoginFailure,
+        setIsAuthenticated,
+        isAuthenticated,
+      }}
     >
       {children}
     </AuthContext.Provider>

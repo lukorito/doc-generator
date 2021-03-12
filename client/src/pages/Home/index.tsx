@@ -1,10 +1,9 @@
 import React from 'react';
-import Loader from '../../components/Loader';
 
 const Home = () => {
   return (
     <>
-      <Loader />
+      <h1>HI there</h1>
     </>
   );
 };

@@ -11,7 +11,9 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.19);
+  position: absolute;
+  z-index: 1000;
 `;
 
 const Loader = () => (
